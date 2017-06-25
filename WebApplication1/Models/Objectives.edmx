@@ -1,0 +1,224 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CouncilObjectivesDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="LU_Objectives">
+          <Key>
+            <PropertyRef Name="ObjID" />
+          </Key>
+          <Property Name="ObjID" Type="int" Nullable="false" />
+          <Property Name="NameID" Type="int" />
+          <Property Name="ObjMinValue" Type="float" />
+          <Property Name="ObjMaxValue" Type="float" />
+          <Property Name="ObjVal_IsLessThan" Type="bit" Nullable="false" />
+          <Property Name="FishOrigin" Type="nvarchar" MaxLength="50" />
+          <Property Name="ProgramAdopted" Type="bit" Nullable="false" />
+          <Property Name="CatID" Type="int" />
+          <Property Name="ObjVarID" Type="int" />
+          <Property Name="ObsoleteFlag" Type="bit" Nullable="false" />
+          <Property Name="Comments" Type="nvarchar(max)" />
+          <Property Name="ObjValType" Type="nvarchar" MaxLength="255" />
+          <Property Name="TargetTimeline" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="tblName">
+          <Key>
+            <PropertyRef Name="NameID" />
+          </Key>
+          <Property Name="NameID" Type="int" Nullable="false" />
+          <Property Name="RecordType" Type="nvarchar" MaxLength="20" />
+          <Property Name="PrimaryName" Type="nvarchar" MaxLength="255" />
+          <Property Name="AltName1" Type="nvarchar" MaxLength="255" />
+          <Property Name="AltName2" Type="nvarchar" MaxLength="255" />
+          <Property Name="AltName3" Type="nvarchar" MaxLength="255" />
+          <Property Name="ESAStatus" Type="nvarchar" MaxLength="50" />
+          <Property Name="ESAListingYear" Type="nvarchar" MaxLength="255" />
+          <Property Name="Designation" Type="nvarchar" MaxLength="50" />
+          <Property Name="Run" Type="nvarchar" MaxLength="30" />
+          <Property Name="SpeciesID" Type="int" Nullable="false" />
+          <Property Name="SN_PopID" Type="int" />
+          <Property Name="PopImageURL" Type="nvarchar" MaxLength="255" />
+          <Property Name="ESUID" Type="int" />
+          <Property Name="MPGID" Type="int" />
+          <Property Name="SubbasinID" Type="int" />
+          <Property Name="RecDomain" Type="int" />
+          <Property Name="RecSubDomain" Type="int" />
+          <Property Name="DistributionLink" Type="nvarchar" MaxLength="255" />
+          <Property Name="CAAbundanceLink" Type="nvarchar" MaxLength="255" />
+          <Property Name="Comment" Type="nvarchar(max)" />
+          <Property Name="Archive" Type="int" />
+          <Property Name="PopType" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <Association Name="FK_LU_Objectives_tblName">
+          <End Role="tblName" Type="Self.tblName" Multiplicity="0..1" />
+          <End Role="LU_Objectives" Type="Self.LU_Objectives" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblName">
+              <PropertyRef Name="NameID" />
+            </Principal>
+            <Dependent Role="LU_Objectives">
+              <PropertyRef Name="NameID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CouncilObjectivesDBModelStoreContainer">
+          <EntitySet Name="LU_Objectives" EntityType="Self.LU_Objectives" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblName" EntityType="Self.tblName" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_LU_Objectives_tblName" Association="Self.FK_LU_Objectives_tblName">
+            <End Role="tblName" EntitySet="tblName" />
+            <End Role="LU_Objectives" EntitySet="LU_Objectives" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CouncilObjectivesDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="LU_Objectives">
+          <Key>
+            <PropertyRef Name="ObjID" />
+          </Key>
+          <Property Name="ObjID" Type="Int32" Nullable="false" />
+          <Property Name="NameID" Type="Int32" />
+          <Property Name="ObjMinValue" Type="Double" />
+          <Property Name="ObjMaxValue" Type="Double" />
+          <Property Name="ObjVal_IsLessThan" Type="Boolean" Nullable="false" />
+          <Property Name="FishOrigin" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProgramAdopted" Type="Boolean" Nullable="false" />
+          <Property Name="CatID" Type="Int32" />
+          <Property Name="ObjVarID" Type="Int32" />
+          <Property Name="ObsoleteFlag" Type="Boolean" Nullable="false" />
+          <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ObjValType" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="TargetTimeline" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblName" Relationship="Self.FK_LU_Objectives_tblName" FromRole="LU_Objectives" ToRole="tblName" />
+        </EntityType>
+        <EntityType Name="tblName">
+          <Key>
+            <PropertyRef Name="NameID" />
+          </Key>
+          <Property Name="NameID" Type="Int32" Nullable="false" />
+          <Property Name="RecordType" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="PrimaryName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="AltName1" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="AltName2" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="AltName3" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ESAStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ESAListingYear" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Designation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Run" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="SpeciesID" Type="Int32" Nullable="false" />
+          <Property Name="SN_PopID" Type="Int32" />
+          <Property Name="PopImageURL" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ESUID" Type="Int32" />
+          <Property Name="MPGID" Type="Int32" />
+          <Property Name="SubbasinID" Type="Int32" />
+          <Property Name="RecDomain" Type="Int32" />
+          <Property Name="RecSubDomain" Type="Int32" />
+          <Property Name="DistributionLink" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CAAbundanceLink" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Archive" Type="Int32" />
+          <Property Name="PopType" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="LU_Objectives" Relationship="Self.FK_LU_Objectives_tblName" FromRole="tblName" ToRole="LU_Objectives" />
+        </EntityType>
+        <Association Name="FK_LU_Objectives_tblName">
+          <End Role="tblName" Type="Self.tblName" Multiplicity="0..1" />
+          <End Role="LU_Objectives" Type="Self.LU_Objectives" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblName">
+              <PropertyRef Name="NameID" />
+            </Principal>
+            <Dependent Role="LU_Objectives">
+              <PropertyRef Name="NameID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CouncilObjectivesDBEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="LU_Objectives" EntityType="Self.LU_Objectives" />
+          <EntitySet Name="tblNames" EntityType="Self.tblName" />
+          <AssociationSet Name="FK_LU_Objectives_tblName" Association="Self.FK_LU_Objectives_tblName">
+            <End Role="tblName" EntitySet="tblNames" />
+            <End Role="LU_Objectives" EntitySet="LU_Objectives" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CouncilObjectivesDBModelStoreContainer" CdmEntityContainer="CouncilObjectivesDBEntities1">
+          <EntitySetMapping Name="LU_Objectives">
+            <EntityTypeMapping TypeName="CouncilObjectivesDBModel.LU_Objectives">
+              <MappingFragment StoreEntitySet="LU_Objectives">
+                <ScalarProperty Name="ObjID" ColumnName="ObjID" />
+                <ScalarProperty Name="NameID" ColumnName="NameID" />
+                <ScalarProperty Name="ObjMinValue" ColumnName="ObjMinValue" />
+                <ScalarProperty Name="ObjMaxValue" ColumnName="ObjMaxValue" />
+                <ScalarProperty Name="ObjVal_IsLessThan" ColumnName="ObjVal_IsLessThan" />
+                <ScalarProperty Name="FishOrigin" ColumnName="FishOrigin" />
+                <ScalarProperty Name="ProgramAdopted" ColumnName="ProgramAdopted" />
+                <ScalarProperty Name="CatID" ColumnName="CatID" />
+                <ScalarProperty Name="ObjVarID" ColumnName="ObjVarID" />
+                <ScalarProperty Name="ObsoleteFlag" ColumnName="ObsoleteFlag" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="ObjValType" ColumnName="ObjValType" />
+                <ScalarProperty Name="TargetTimeline" ColumnName="TargetTimeline" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblNames">
+            <EntityTypeMapping TypeName="CouncilObjectivesDBModel.tblName">
+              <MappingFragment StoreEntitySet="tblName">
+                <ScalarProperty Name="NameID" ColumnName="NameID" />
+                <ScalarProperty Name="RecordType" ColumnName="RecordType" />
+                <ScalarProperty Name="PrimaryName" ColumnName="PrimaryName" />
+                <ScalarProperty Name="AltName1" ColumnName="AltName1" />
+                <ScalarProperty Name="AltName2" ColumnName="AltName2" />
+                <ScalarProperty Name="AltName3" ColumnName="AltName3" />
+                <ScalarProperty Name="ESAStatus" ColumnName="ESAStatus" />
+                <ScalarProperty Name="ESAListingYear" ColumnName="ESAListingYear" />
+                <ScalarProperty Name="Designation" ColumnName="Designation" />
+                <ScalarProperty Name="Run" ColumnName="Run" />
+                <ScalarProperty Name="SpeciesID" ColumnName="SpeciesID" />
+                <ScalarProperty Name="SN_PopID" ColumnName="SN_PopID" />
+                <ScalarProperty Name="PopImageURL" ColumnName="PopImageURL" />
+                <ScalarProperty Name="ESUID" ColumnName="ESUID" />
+                <ScalarProperty Name="MPGID" ColumnName="MPGID" />
+                <ScalarProperty Name="SubbasinID" ColumnName="SubbasinID" />
+                <ScalarProperty Name="RecDomain" ColumnName="RecDomain" />
+                <ScalarProperty Name="RecSubDomain" ColumnName="RecSubDomain" />
+                <ScalarProperty Name="DistributionLink" ColumnName="DistributionLink" />
+                <ScalarProperty Name="CAAbundanceLink" ColumnName="CAAbundanceLink" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="Archive" ColumnName="Archive" />
+                <ScalarProperty Name="PopType" ColumnName="PopType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
